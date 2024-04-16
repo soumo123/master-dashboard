@@ -3,7 +3,6 @@ import Modal from "react-bootstrap/Modal";
 import '../../css/main.css'
 import axios from 'axios'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { useAlert } from 'react-alert'
 import { useSelector, useDispatch } from 'react-redux';
 import { noteRefs } from '../../redux/actions/userAction';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 const Dashboard = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const alert = useAlert()
     const adminid = localStorage.getItem('adminId')
     const [errorMessage, setErrorMessage] = useState('');
     const [allShops, setAllShops] = useState([])
@@ -68,7 +66,7 @@ const Dashboard = () => {
             const response = await axios.post(`${process.env.REACT_APP_PRODUCTION_URL}/api/v1/craete_shop`, formDataToSend, config);
 
             if (response.status === 200) {
-                alert.success("Shop Created successfully")
+                alert("Shop Created successfully")
                 setShpData({
                     shop_name: "",
                     file: null
@@ -78,7 +76,7 @@ const Dashboard = () => {
 
                 setImagePreview("./avatar.jpg")
             } else {
-                alert.error("Shop Not Created")
+                alert("Shop Not Created")
             }
         } catch (error) {
             console.error('Error Shop Creating:', error);

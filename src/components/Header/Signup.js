@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import '../../css/main.css'
 import axios from 'axios'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import {useAlert} from 'react-alert'
 import {useNavigate} from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { fetchUserDetails } from '../../redux/actions/userAction';
@@ -11,7 +10,6 @@ import {Link} from 'react-router-dom'
 const Signup = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const alert = useAlert()
   const [userData, setUserData] = useState({
     firstname: "",
     lastname: "",
@@ -80,7 +78,7 @@ const Signup = () => {
       const response = await axios.post(`${process.env.REACT_APP_PRODUCTION_URL}/api/v1/registerAdmin`, formDataToSend, config);
 
       if (response.status === 200) {
-        alert.success("Sign up successfully")
+        alert("Sign up successfully")
         setUserData({
           firstname: "",
           lastname: "",
@@ -93,7 +91,7 @@ const Signup = () => {
         setImagePreview("./avatar.jpg")
         setMode(1)
       } else {
-        alert.error("Signup failed")
+        alert("Signup failed")
       }
     } catch (error) {
       console.error('Error signing up:', error);
@@ -126,7 +124,7 @@ const handleSignin = async(e)=>{
       const response = await axios.post(`${process.env.REACT_APP_PRODUCTION_URL}/api/v1/adminLogin`, json, config);
 
       if (response.status === 200) {
-        alert.success("Sign in successfully")
+        alert("Sign in successfully")
         setUserData({
           firstname: "",
           lastname: "",
@@ -143,7 +141,7 @@ const handleSignin = async(e)=>{
         dispatch(fetchUserDetails(response.data.admin))
         navigate("/")
       } else {
-        alert.error("Signup failed")
+        alert("Signup failed")
       }
   } catch (error) {
     console.error('Error signing up:', error);

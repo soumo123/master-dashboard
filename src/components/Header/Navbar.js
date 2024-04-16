@@ -21,12 +21,10 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { useAlert } from 'react-alert'
 import { noteRefs } from '../../redux/actions/userAction';
 import Dashboard from './Dashboard';
 
 const Navbar = () => {
-    const alert = useAlert()
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [auth, setAuth] = React.useState(true);
@@ -84,7 +82,7 @@ const Navbar = () => {
         localStorage.removeItem("toke1")
         localStorage.removeItem("adminId")
         localStorage.removeItem("adminProfile")
-        alert.success("Logout Successfully")
+        alert("Logout Successfully")
         setLogOutOpen(false);
         dispatch(noteRefs(new Date().getSeconds()))
     }
