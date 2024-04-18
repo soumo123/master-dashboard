@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import '../../css/main.css'
 import axios from 'axios'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { fetchUserDetails } from '../../redux/actions/userAction';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Signup = () => {
   const dispatch = useDispatch()
@@ -101,24 +101,25 @@ const Signup = () => {
   console.log("userData", userData)
 
 
-const handleSignin = async(e)=>{
+  const handleSignin = async (e) => {
     e.preventDefault();
-    const { email, password} = userData;
-    if (!email || !password ) {
+    const { email, password } = userData;
+    if (!email || !password) {
       setErrorMessage('Please fill in all fields');
       return;
     }
     try {
-      let json ={
-        email:userData.email,
-        password:userData.password
+      let json = {
+        email: userData.email,
+        password: userData.password
       }
 
 
       const config = {
         headers: {
           'Content-Type': "application/json",
-        }
+        },
+        withCredentials: true
       };
 
       const response = await axios.post(`${process.env.REACT_APP_PRODUCTION_URL}/api/v1/adminLogin`, json, config);
@@ -143,10 +144,10 @@ const handleSignin = async(e)=>{
       } else {
         alert("Signup failed")
       }
-  } catch (error) {
-    console.error('Error signing up:', error);
+    } catch (error) {
+      console.error('Error signing up:', error);
+    }
   }
-}
 
 
 
@@ -163,20 +164,20 @@ const handleSignin = async(e)=>{
                 <div className="sign-in-htm">
                   <div className="group">
                     <label for="email" className="label" >Email</label>
-                    <input id="email" type="text" className="input" name="email" value={userData.email} onChange={handleChange}/>
+                    <input id="email" type="text" className="input" name="email" value={userData.email} onChange={handleChange} />
                   </div>
                   <div className="group">
                     <label for="pass" className="label">Password</label>
-                    <input id="pass" type="password" className="input" data-type="password" name="password" value={userData.password} onChange={handleChange}/>
+                    <input id="pass" type="password" className="input" data-type="password" name="password" value={userData.password} onChange={handleChange} />
                   </div>
                   <div className="group">
-                    
+
                     <button className="button" onClick={handleSignin}>Signin</button>
                   </div>
                   <div className="hr"></div>
-                <div className="text-center">
-                <span>Back to <Link to ="/">Home</Link></span>
-                </div>
+                  <div className="text-center">
+                    <span>Back to <Link to="/">Home</Link></span>
+                  </div>
                 </div>
               ) : (
                 <div className="">
@@ -217,7 +218,7 @@ const handleSignin = async(e)=>{
               )
             }
 
-       
+
           </div>
         </div>
       </div>
