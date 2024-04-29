@@ -1,6 +1,7 @@
 {
   "name": "master-dasboard",
   "version": "0.1.0",
+  "homepage": "http://creamyaffairsmasterdashboard/",
   "private": true,
   "dependencies": {
     "@emotion/react": "11.10.4",

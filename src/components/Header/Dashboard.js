@@ -98,7 +98,7 @@ const Dashboard = () => {
 
 
     const handleDashBoradRedirect = (admin, id, type) => {
-        window.open(`${process.env.REACT_APP_DASHBOARD}/${window.btoa(admin)}/${window.btoa(id)}/${window.btoa(type)}`, '_blank');
+        window.open(`${process.env.REACT_APP_DASHBOARD}?adminId=${window.btoa(admin)}&shop_id=${window.btoa(id)}&type=${window.btoa(type)}`, '_blank');
     }
 
 
